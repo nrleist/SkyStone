@@ -1,8 +1,5 @@
-package org.firstinspires.ftc.teamcode;
-
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
- /*
+package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights reserved.
+ *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
  * the following conditions are met:
@@ -32,7 +29,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
@@ -49,14 +45,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Motor Test", group="Linear Opmode")
+@Autonomous(name="Drive_Test", group="Linear Opmode")
 //@Disabled
-public class Motor_Test extends LinearOpMode {
+public class driveTest extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
 
-    Hardware hardware = new Hardware();
+    private Hardware hardware = new Hardware();
+    private basicDrive bDrive = new basicDrive(hardware,this);
 
     @Override
     public void runOpMode() {
@@ -72,28 +69,35 @@ public class Motor_Test extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        hardware.leftFrontWheel.setPower(0.5);
-        telemetry.addData("leftFrontRunning", "yes");
-        telemetry.update();
-        sleep(5000);
-        hardware.leftFrontWheel.setPower(0);
+        bDrive.setPowerForward(.5);
+        sleep(2500);
+        bDrive.stopWheels();
 
-        hardware.rightFrontWheel.setPower(0.5);
-        telemetry.addData("rightFrontRunning", "yes");
-        telemetry.update();
-        sleep(5000);
-        hardware.rightFrontWheel.setPower(0);
+        sleep(500);
 
-        hardware.leftBackWheel.setPower(0.5);
-        telemetry.addData("leftBackRunning", "yes");
-        telemetry.update();
-        sleep(5000);
-        hardware.leftBackWheel.setPower(0);
+        bDrive.setPowerStrafeRight(0.5);
+        sleep(1500);
+        bDrive.stopWheels();
 
-        hardware.rightBackWheel.setPower(0.5);
-        telemetry.addData("rightBackRunning", "yes");
-        telemetry.update();
-        sleep(5000);
-        hardware.rightBackWheel.setPower(0);
-}
+        sleep(500);
+
+        bDrive.setPowerStrafeRight(-0.5);
+        sleep(1000);
+        bDrive.stopWheels();
+
+        sleep(500);
+
+        bDrive.setPowerForward(-.5);
+        sleep(2000);
+        bDrive.stopWheels();
+
+        sleep(500);
+
+        bDrive.setPowerTurnRight(0.5);
+        sleep(750);
+        bDrive.stopWheels();
+
+        sleep(500);
+
+    }
 }
