@@ -12,7 +12,8 @@ public class Hardware {
     public DcMotor rightFrontWheel = null;
     public DcMotor leftBackWheel = null;
     public DcMotor rightBackWheel = null;
-    public WebcamName webcamName = null;
+    public WebcamName webcamOne = null;
+
 
     public void init(HardwareMap hardwareMap){
         leftFrontWheel  = hardwareMap.get(DcMotor.class, "leftFrontWheel");
@@ -20,7 +21,7 @@ public class Hardware {
         leftBackWheel  = hardwareMap.get(DcMotor.class, "leftBackWheel");
         rightBackWheel = hardwareMap.get(DcMotor.class, "rightBackWheel");
 
-        webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
+        webcamOne = hardwareMap.get(WebcamName.class, "Webcam 1");
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftFrontWheel.setDirection(DcMotor.Direction.REVERSE);
