@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.configuration.WebcamConfiguration;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.internal.camera.names.WebcamNameImpl;
 
 public class Hardware {
 
@@ -13,6 +15,7 @@ public class Hardware {
     public DcMotor leftBackWheel = null;
     public DcMotor rightBackWheel = null;
     public WebcamName webcamOne = null;
+    public int webcamView;
 
 
     public void init(HardwareMap hardwareMap){
@@ -21,7 +24,8 @@ public class Hardware {
         leftBackWheel  = hardwareMap.get(DcMotor.class, "leftBackWheel");
         rightBackWheel = hardwareMap.get(DcMotor.class, "rightBackWheel");
 
-        webcamOne = hardwareMap.get(WebcamName.class, "Webcam 1");
+        webcamOne = (WebcamNameImpl) hardwareMap.get(WebcamName.class, "Webcam 1");
+        webcamView = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftFrontWheel.setDirection(DcMotor.Direction.REVERSE);
